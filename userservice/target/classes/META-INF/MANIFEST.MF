@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: RamCharanB
+Build-Jdk: 15.0.1
+Implementation-Title: userservice
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.stackroute.team08
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/worldexplorer/userservice
+Created-By: Maven Integration for Eclipse
+

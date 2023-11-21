@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  userservice:
+    build:
+      context: ./UserServiceDirectory
+    ports:
+      - "2212:2212"
+    environment:
+      MYSQL_DATABASE: userservicedb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 0987
+      MYSQL_CI_URL: jdbc:mysql://userservice-db:3306/userservicedb?createDatabaseIfNotExist=true&user=root&password=0987&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    depends_on:
+      - userservice-db
+
+  favservice:
+    build:
+      context: ./FavServiceDirectory
+    ports:
+      - "2213:2213"
+    environment:
+      MYSQL_DATABASE: favouriteservicedb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 0987
+      MYSQL_CI_URL: jdbc:mysql://favservice-db:3306/favouriteservicedb?createDatabaseIfNotExist=true&user=root&password=0987&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    depends_on:
+      - favservice-db
+
+  fetchcountryattractionservice:
+    build:
+      context: ./FetchCountryAttractionServiceDirectory
+    ports:
+      - "2215:2215"
+    environment:
+      MYSQL_DATABASE: fetchcountryattractionservicedb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 0987
+      MYSQL_CI_URL: jdbc:mysql://fetchcountryattractionservice-db:3306/fetchcountryattractionservicedb?createDatabaseIfNotExist=true&user=root&password=0987&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    depends_on:
+      - fetchcountryattractionservice-db
+
+  userservice-db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: userservicedb
+      MYSQL_ROOT_PASSWORD: 0987
+    ports:
+      - "3306:3306"
+
+  favservice-db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: favouriteservicedb
+      MYSQL_ROOT_PASSWORD: 0987
+    ports:
+      - "3307:3306"
+
+  fetchcountryattractionservice-db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: fetchcountryattractionservicedb
+      MYSQL_ROOT_PASSWORD: 0987
+    ports:
+      - "3308:3306"
